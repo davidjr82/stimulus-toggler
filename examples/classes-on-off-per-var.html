@@ -1,0 +1,16 @@
+<div data-controller="toggler" class="example">
+    <!-- togglers -->
+    <button id="btn_toggle_8_color" data-toggler-states-param="8_color">Toggle 8_color var</button>
+    <button id="btn_toggle_8_font" data-toggler-states-param="8_font">Toggle 8_font var</button>
+    <button id="btn_toggle_8_color_font" data-toggler-states-param="8_color,8_font">Toggle 8 both vars</button>
+    <!-- elements to toggle -->
+    <div id="div_8"
+                    data-toggler-target="toggleable"
+                    data-toggler-listen="8_color,8_font"
+                    data-toggler-classes-on-8_color="bg-fuchsia-500"
+                    data-toggler-classes-off-8_color="bg-stone-500"
+                    data-toggler-classes-on-8_font="text-xl"
+                    data-toggler-classes-off-8_font="text-xs">
+        Eigtht (8) listening 2 vars (font and color)
+    </div>
+</div>

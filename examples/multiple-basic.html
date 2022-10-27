@@ -1,0 +1,11 @@
+<div data-controller="toggler" class="example">
+    <!-- togglers -->
+    <button id="btn_mix_1_2_3" data-toggler-states-param="+div_1,-div_2,div_3">Show 1, Hide 2, Toggle 3</button>
+    <button id="btn_hide_1_2_3" data-toggler-states-param="-div_1,-div_2,-div_3">Hide all</button>
+    <button id="btn_show_1_2_3" data-toggler-states-param="+div_1,+div_2,+div_3">Show all</button>
+    <button id="btn_toggle_1_2_3" data-toggler-states-param="div_1,div_2,div_3">Toggle all</button>
+    <!-- elements to toggle -->
+    <div id="div_1" class="bg"        data-toggler-target="toggleable" data-toggler-listen="div_1">First (1)</div>
+    <div id="div_2" class="bg"        data-toggler-target="toggleable" data-toggler-listen="div_2">Second (2)</div>
+    <div id="div_3" class="bg hidden" data-toggler-target="toggleable" data-toggler-listen="div_3">Third (3)</div>
+</div>

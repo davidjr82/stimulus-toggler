@@ -1,0 +1,20 @@
+<div data-controller="toggler" class="example">
+    <!-- togglers -->
+    <button id="btn_toggle_6" data-toggler-states-param="div_6">Toggle background 6</button>
+    <button id="btn_toggle_6_7" data-toggler-states-param="div_6,div_7">Toggle background 6 and 7</button>
+    <!-- elements to toggle -->
+    <div id="div_6"
+                    data-toggler-target="toggleable"
+                    data-toggler-listen="div_6"
+                    data-toggler-classes-on="bg-fuchsia-500"
+                    data-toggler-classes-off="bg-stone-500">
+        Sixth (6) starting off
+    </div>
+    <div id="div_7" class="bg-amber-500"
+                    data-toggler-target="toggleable"
+                    data-toggler-listen="div_7"
+                    data-toggler-classes-on="bg-amber-500"
+                    data-toggler-classes-off="bg-zinc-500">
+        Seventh (7) starting on
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div data-controller="toggler" class="example">
+    <!-- togglers -->
+    <button id="btn_toggle_11" data-toggler-states-param="div_11">Toggle 11 fuchsia </button>
+    <button id="btn_toggle_12" data-toggler-states-param="div_12">Toggle 12 fuchsia</button>
+    <button id="btn_toggle_11_12" data-toggler-states-param="div_11,div_12">Toggle 11 and 12 fuchsia</button>
+    <!-- elements to toggle -->
+    <div id="div_11" class="bg-fuchsia-500"
+                     data-toggler-target="toggleable"
+                     data-toggler-listen="div_11"
+                     data-toggler-classes="bg-fuchsia-500"
+                     data-transition-enter="ease-in-out duration-500"
+                     data-transition-enter-start="bg-opacity-0"
+                     data-transition-enter-end="bg-opacity-100"
+                     data-transition-leave="ease-in-out duration-500"
+                     data-transition-leave-start="bg-opacity-100"
+                     data-transition-leave-end="bg-opacity-0">
+        Eleventh (11) starting on
+    </div>
+    <div id="div_12"
+                     data-toggler-target="toggleable"
+                     data-toggler-listen="div_12"
+                     data-toggler-classes="bg-fuchsia-500"
+                     data-transition-enter="ease-in-out duration-500"
+                     data-transition-enter-start="bg-opacity-0"
+                     data-transition-enter-end="bg-opacity-100"
+                     data-transition-leave="ease-in-out duration-500"
+                     data-transition-leave-start="bg-opacity-100"
+                     data-transition-leave-end="bg-opacity-0">
+        Twelveth (12) starting off
+    </div>
+</div>
