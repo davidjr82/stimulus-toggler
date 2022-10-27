@@ -13,7 +13,7 @@
     "reveal",
     "show on off"
   ],
-  "description": "",
+  "description": "Hotwired stimulus toggler based on reactivity concept.",
   "files": [
     "src/controllers/toggler_controller.js",
     "src/utils/"
