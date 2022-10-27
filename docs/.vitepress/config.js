@@ -4,6 +4,7 @@ export default defineConfig({
   lang: 'en-US',
   title: 'Stimulus Toggler',
   description: 'Hotwired stimulus toggler based on reactivity concept.',
+  base: '/stimulus-toggler/',
 
   lastUpdated: false,
   cleanUrls: 'without-subfolders',
