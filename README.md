@@ -30,6 +30,6 @@ application.register('toggler', Toggler);
 
 Please, go to (https://davidjr82.github.io/stimulus-toggler/) to see the full documentation.
 
-### License
+## License
 
 This project is licensed under the MIT License.
