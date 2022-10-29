@@ -49,12 +49,12 @@ const removeClasses = (element, classes) => {
 
 const getClassesOn = (element, state) => {
 
-    if(element.hasAttribute('data-toggler-classes-on-' + state)) {
-        return element.getAttribute('data-toggler-classes-on-' + state).split(' ') || [];
+    if(element.hasAttribute('data-toggler-classes-on-' + state) || element.hasAttribute('data-toggler-classes-off-' + state)) {
+        return element.getAttribute('data-toggler-classes-on-' + state)?.split(' ') || [];
     }
 
-    if(element.hasAttribute('data-toggler-classes-on')) {
-        return element.getAttribute('data-toggler-classes-on').split(' ') || [];
+    if(element.hasAttribute('data-toggler-classes-on') || element.hasAttribute('data-toggler-classes-off')) {
+        return element.getAttribute('data-toggler-classes-on')?.split(' ') || [];
     }
 
     if(element.hasAttribute('data-toggler-classes')) {
@@ -66,12 +66,12 @@ const getClassesOn = (element, state) => {
 
 const getClassesOff = (element, state) => {
 
-    if(element.hasAttribute('data-toggler-classes-off-' + state)) {
-        return element.getAttribute('data-toggler-classes-off-' + state).split(' ') || [];
+    if(element.hasAttribute('data-toggler-classes-off-' + state) || element.hasAttribute('data-toggler-classes-on-' + state)) {
+        return element.getAttribute('data-toggler-classes-off-' + state)?.split(' ') || [];
     }
 
-    if(element.hasAttribute('data-toggler-classes-off')) {
-        return element.getAttribute('data-toggler-classes-off').split(' ') || [];
+    if(element.hasAttribute('data-toggler-classes-off') || element.hasAttribute('data-toggler-classes-on')) {
+        return element.getAttribute('data-toggler-classes-off')?.split(' ') || [];
     }
 
     if(element.hasAttribute('data-toggler-classes')) {
