@@ -1,0 +1,1 @@
+import{_ as s,c as a,o,a as l}from"./app.b4f9498b.js";const d=JSON.parse('{"title":"How to use with tabs","description":"","frontmatter":{},"headers":[],"relativePath":"examples/tabs.md"}'),n={name:"examples/tabs.md"},p=l("",14),t=[p];function e(r,c,D,F,y,g){return o(),a("div",null,t)}const C=s(n,[["render",e]]);export{d as __pageData,C as default};

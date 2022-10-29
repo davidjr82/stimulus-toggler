@@ -1,1 +1,0 @@
-import{_ as s,c as a,o as n,a as o}from"./app.5e44ea7a.js";const g=JSON.parse('{"title":"How to use with tabs","description":"","frontmatter":{},"headers":[],"relativePath":"examples/transitions.md"}'),l={name:"examples/transitions.md"},t=o("",8),p=[t];function e(r,c,D,F,y,i){return n(),a("div",null,p)}const u=s(l,[["render",e]]);export{g as __pageData,u as default};

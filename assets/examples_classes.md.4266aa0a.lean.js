@@ -1,1 +1,0 @@
-import{_ as s,c as a,o,a as l}from"./app.5e44ea7a.js";const i=JSON.parse('{"title":"Set the class to toggle","description":"","frontmatter":{},"headers":[],"relativePath":"examples/classes.md"}'),t={name:"examples/classes.md"},n=l("",8),p=[n];function e(c,r,D,F,y,g){return o(),a("div",null,p)}const u=s(t,[["render",e]]);export{i as __pageData,u as default};
