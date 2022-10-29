@@ -31,7 +31,7 @@
     "url": "git+https://github.com/davidjr82/stimulus-toggler.git"
   },
   "author": "David Jiménez <davidjr82@users.noreply.github.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/davidjr82/stimulus-toggler/issues"
   },
