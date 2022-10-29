@@ -8,9 +8,9 @@ The controller set variables to on/off when an element triggers the action with<
 `data-action="toggler#states"`.
 
 The values that action want to set for the variables are defined by<br />
-`data-toggler-states-param`.
+`data-toggler-states`.
 
-If only `data-toggler-states-param` is set in an element, the controller will attach the action automatically so you don't have to take care of it.
+If only `data-toggler-states` is set in an element, the controller will attach the action automatically so you don't have to take care of it. [See Automatic aliasing section](/alias.md).
 
 
 ## Setting variables
@@ -23,9 +23,9 @@ Without any token, it **toggles** the variable.
 
 ```html
 <!-- Clicking here, it will... -->
-<div data-toggler-states-param="-sidebar">...set "sidebar" to off</div>
-<div data-toggler-states-param="+sidebar">...set "sidebar" to on</div>
-<div data-toggler-states-param="sidebar">...toggle "sidebar" on/off</div>
+<button data-toggler-states="-sidebar">...set "sidebar" to off</button>
+<button data-toggler-states="+sidebar">...set "sidebar" to on</button>
+<button data-toggler-states="sidebar">...toggle "sidebar" on/off</button>
 ```
 
 ## Reacting to variable changes

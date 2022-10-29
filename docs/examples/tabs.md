@@ -8,7 +8,7 @@ Setting arbitrary values for variables is only intended for internal purposes ye
 Although it can be used by the end user, no tests are made for it.
 :::
 
-A variable state can be set to an arbitrary value with<br />`data-toggler-states-param="variable:state"`.
+A variable state can be set to an arbitrary value with<br />`data-toggler-states="variable:state"`.
 
 The effect is:
 - Elements that listen to that variable and that state will react as adding the on classes, and removing the off clases.
@@ -19,8 +19,7 @@ To use tabs in a comfortable way, we have added an *alias* that sets everything 
 ::: details See alias for `data-toggler-tab`
 - `data-toggler-tab-link="group,content"` is an alias of:
     - `data-action="toggler#states"`
-    - `data-toggler-states-param="-tabs_group,+tab_group_content"`
-    - `data-toggler-reset-param="tabs_group,tab_group_content"`
+    - `data-toggler-states="-tabs_group,+tab_group_content"`
     - `data-toggler-listen="-tabs_group,+tab_group_content"`
 
 

@@ -32,6 +32,7 @@ function sidebar() {
         { text: 'What is Stimulus Toggler?', link: '/' },
         { text: 'Getting Started', link: '/getting-started' },
         { text: 'Configuration', link: '/configuration' },
+        { text: 'Automatic aliasing', link: '/alias' },
       ]
     },
     {

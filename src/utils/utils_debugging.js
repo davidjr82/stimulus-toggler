@@ -8,7 +8,7 @@ const debugAppendActions = (debug) => {
     if(debug) {
         document.querySelectorAll('[data-action="toggler#states"]').forEach(element => {
             if(!element.hasAttribute('data-toggler-no-debug')) {
-                element.insertAdjacentHTML('beforeend', '<br />(actions: ' + (element.dataset?.togglerStatesParam || 'No params!') + ')')
+                element.insertAdjacentHTML('beforeend', '<br />(actions: ' + (element.dataset?.togglerStates || 'No params!') + ')')
             }
         });
     }

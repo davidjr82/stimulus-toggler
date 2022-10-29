@@ -7,8 +7,8 @@ VitePress comes with built in Markdown Extensions.
 | Option | Use  |
 | ------ | ---- |
 | data-controller="toggler" | Initialize the controller, recommended in body |
-| data-action="toggler#states | Fires the event to change the variables set in data-toggler-states-param |
-| data-toggler-states-param="+a,-b,c" | Define what variables to change and how.<br />Multiple vars can be changed at once separated by commas. + means on, - means off, var name means toggle. |
+| data-action="toggler#states | Fires the event to change the variables set in data-toggler-states |
+| data-toggler-states="+a,-b,c" | Define what variables to change and how.<br />Multiple vars can be changed at once separated by commas. + means on, - means off, var name means toggle. |
 
 ## Not so commonly used options
 

@@ -36,7 +36,7 @@ export default class extends Controller {
 
     connect() {
 
-        document.querySelectorAll('[data-toggler-states-param]').forEach(element => autoInitAction(element));
+        document.querySelectorAll('[data-toggler-states]').forEach(element => autoInitAction(element));
 
         this.autoInitializeTabs();
 
@@ -55,7 +55,7 @@ export default class extends Controller {
     states(event) {
         this.skip_transition = false;
 
-        let states = event.params?.states?.toString()?.split(",") || [];
+        let states = event.target.dataset?.togglerStates?.toString()?.split(",") || [];
         this.setStates(states);
     }
 
@@ -98,7 +98,7 @@ export default class extends Controller {
         }
 
         if(element.hasAttribute('data-toggler-tab-active')) {
-            this.setStates(element.dataset?.togglerStatesParam?.split(",").filter(state => state.includes(':')) || []);
+            this.setStates(element.dataset?.togglerStates?.split(",").filter(state => state.includes(':')) || []);
         }
 
         let listen = element.dataset?.togglerListen?.split(',') || [];
@@ -131,7 +131,7 @@ export default class extends Controller {
         // click tab links that matches url hash
         if(window.location.hash) {
             document.querySelectorAll("[href='" + window.location.hash + "']").forEach(tab_selector => {
-                this.setStates(tab_selector.dataset?.togglerStatesParam?.split(',') || []);
+                this.setStates(tab_selector.dataset?.togglerStates?.split(',') || []);
             });
         }
 

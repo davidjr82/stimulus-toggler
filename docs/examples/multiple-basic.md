@@ -1,6 +1,6 @@
 # Multiple basic example
 
-A group of elements can be toggled to different states from one trigger separating params with commas.
+A group of elements can be toggled to different states from one trigger separating states variables with commas.
 
 **Input**
 

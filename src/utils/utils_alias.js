@@ -15,7 +15,7 @@ const aliasTabs = (element) => {
 
     if(tab_link.length == 2) {
         appendAttribute(element, 'data-action', "toggler#states");
-        appendAttribute(element, 'data-toggler-states-param', prefixedTab(tab_link));
+        appendAttribute(element, 'data-toggler-states', prefixedTab(tab_link));
         appendAttribute(element, 'data-toggler-listen', prefixedTab(tab_link));
         element.removeAttribute('data-toggler-tab-link');
     }
@@ -31,7 +31,7 @@ const prefixedTab = ([tab_group,tab_name]) => { return tab_name.startsWith('tab_
 
 const autoInitAction = (element) => {
 
-    if(!element.hasAttribute('data-toggler-states-param')) {
+    if(!element.hasAttribute('data-toggler-states')) {
         return;
     }
 
@@ -42,7 +42,7 @@ const autoInitAction = (element) => {
 
     if(element.hasAttribute('data-action')) {
 
-        if(element.getAttribute('data-action').split(' ').includes('toggler#states')) {
+        if(element.getAttribute('data-action').includes('toggler#states')) {
             return;
         }
 
