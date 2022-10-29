@@ -20,10 +20,10 @@ const aliasTabs = (element) => {
         element.removeAttribute('data-toggler-tab-link');
     }
 
-    let tab_content = element.getAttribute('data-toggler-tab')?.split(':') || [];
+    let tab_content = element.getAttribute('data-toggler-tab-content')?.split(':') || [];
     if(tab_content.length == 2) {
         appendAttribute(element, 'data-toggler-listen', prefixedTab(tab_content));
-        element.removeAttribute('data-toggler-tab');
+        element.removeAttribute('data-toggler-tab-content');
     }
 }
 

@@ -16,14 +16,14 @@ The effect is:
 
 To use tabs in a comfortable way, we have added an *alias* that sets everything when the element is connected with `data-toggler-target="toggleable"`.
 
-::: details See alias for `data-toggler-tab`
-- `data-toggler-tab-link="group,content"` is an alias of:
+::: details See alias for `data-toggler-tab-[link|content]`
+- `data-toggler-tab-link="group:content"` is an alias of:
     - `data-action="toggler#states"`
     - `data-toggler-states="-tabs_group,+tab_group_content"`
     - `data-toggler-listen="-tabs_group,+tab_group_content"`
 
 
-- `data-toggler-tab="group,content"` is an alias of:
+- `data-toggler-tab-content="group:content"` is an alias of:
     - `data-toggler-listen="-tabs_group,+tab_groups_content"`
 :::
 
