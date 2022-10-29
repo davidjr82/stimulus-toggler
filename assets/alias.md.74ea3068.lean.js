@@ -1,1 +1,0 @@
-import{_ as t,c as a,o as e,a as s}from"./app.b4f9498b.js";const D=JSON.parse('{"title":"Automatic aliasing","description":"","frontmatter":{},"headers":[],"relativePath":"alias.md"}'),o={name:"alias.md"},n=s("",9),l=[n];function r(c,i,p,d,h,u){return e(),a("div",null,l)}const y=t(o,[["render",r]]);export{D as __pageData,y as default};
