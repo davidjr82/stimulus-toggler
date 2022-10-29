@@ -55,7 +55,7 @@ export default class extends Controller {
     states(event) {
         this.skip_transition = false;
 
-        let states = event.target.dataset?.togglerStates?.toString()?.split(",") || [];
+        let states = event.currentTarget.dataset?.togglerStates?.toString()?.split(",") || [];
         this.setStates(states);
     }
 
