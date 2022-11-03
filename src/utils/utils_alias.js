@@ -9,6 +9,24 @@ const appendAttribute = (element, attribute, append) => {
     element.setAttribute(attribute, attr + ' ' + append);
 }
 
+const aliasTransitions = (element) => {
+    let transitionName = element.getAttribute('data-toggler-transition') || '';
+
+    if(transitionName.trim().length == 0) {
+        return;
+    }
+
+    appendAttribute(element, 'data-transition-enter', transitionName + '-enter');
+    appendAttribute(element, 'data-transition-enter-start', transitionName + '-enter-start');
+    appendAttribute(element, 'data-transition-enter-end', transitionName + '-enter-end');
+
+    appendAttribute(element, 'data-transition-leave', transitionName + '-leave');
+    appendAttribute(element, 'data-transition-leave-start', transitionName + '-leave-start');
+    appendAttribute(element, 'data-transition-leave-end', transitionName + '-leave-end');
+
+    element.removeAttribute('data-toggler-transition');
+}
+
 const aliasTabs = (element) => {
 
     let tab_link = element.getAttribute('data-toggler-tab-link')?.split(':') || [];
@@ -51,4 +69,4 @@ const autoInitAction = (element) => {
     }
 }
 
-export { aliasTabs, autoInitAction };
+export { aliasTransitions, aliasTabs, autoInitAction };

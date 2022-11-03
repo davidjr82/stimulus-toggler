@@ -1,7 +1,7 @@
 import { Controller } from '@hotwired/stimulus'
 import { setListenedSubscriptions } from './../utils/utils_subscriptions';
 import { replaceClasses, getClassesOn, getClassesOff } from './../utils/utils_html_classes';
-import { aliasTabs, autoInitAction } from './../utils/utils_alias';
+import { aliasTransitions, aliasTabs, autoInitAction } from './../utils/utils_alias';
 import { debugShowStates, debugAppendActions, debugAppendListens } from './../utils/utils_debugging';
 
 export default class extends Controller {
@@ -22,7 +22,9 @@ export default class extends Controller {
 
     toggleableTargetConnected(element) {
 
+        aliasTransitions(element, this);
         aliasTabs(element, this);
+
         autoInitAction(element);
 
         debugAppendListens(this.debugValue, element);

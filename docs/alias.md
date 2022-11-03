@@ -19,3 +19,11 @@ In a div there is no default action, so you will need to do add the `data-action
         ...
 </div>
 ```
+
+## From `data-toggler-transition`
+
+To be done
+
+## From `data-toggler-tab-[link|content]`
+
+To be done
