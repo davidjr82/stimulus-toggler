@@ -1,13 +1,14 @@
-const debugShowStates = (debug, element_id, obj) => {
-    if(debug && document.getElementById(element_id)) {
-        document.getElementById(element_id).innerHTML = element_id + ':' + JSON.stringify(obj);
+const debugShowObject = (debug, element_id, obj) => {
+    if (debug && document.getElementById(element_id)) {
+        document.getElementById(element_id).innerHTML = '<pre>' + element_id + ':' + JSON.stringify(obj, null, 4) + '</pre>';
+        console.log(element_id, obj);
     }
 }
 
 const debugAppendActions = (debug) => {
-    if(debug) {
+    if (debug) {
         document.querySelectorAll('[data-action="toggler#states"]').forEach(element => {
-            if(!element.hasAttribute('data-toggler-no-debug')) {
+            if (!element.hasAttribute('data-toggler-no-debug')) {
                 element.insertAdjacentHTML('beforeend', '<br />(actions: ' + (element.dataset?.togglerStates || 'No params!') + ')')
             }
         });
@@ -17,9 +18,9 @@ const debugAppendActions = (debug) => {
 const debugAppendListens = (debug, element) => {
     let listen = element.dataset?.togglerListen?.split(',') || [];
 
-    if(debug && !element.hasAttribute('data-toggler-no-debug')) {
+    if (debug && !element.hasAttribute('data-toggler-no-debug')) {
         element.insertAdjacentHTML('beforeend', '<br />(listen: ' + listen.join(', ') + ')');
     }
 }
 
-export { debugShowStates, debugAppendActions, debugAppendListens };
+export { debugShowObject, debugAppendActions, debugAppendListens };

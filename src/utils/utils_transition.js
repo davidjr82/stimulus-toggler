@@ -15,7 +15,7 @@ async function runTransition(direction, element, transitionName = null) {
     const startClasses = getTransitionClasses(element, `${dataName}-start`);
     const endClasses = getTransitionClasses(element, `${dataName}-end`);
 
-    if(activeClasses.length || startClasses.length || endClasses.length) {
+    if (activeClasses.length || startClasses.length || endClasses.length) {
         addClasses(element, activeClasses);
         addClasses(element, startClasses);
 

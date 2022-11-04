@@ -1,8 +1,8 @@
 import { Controller } from '@hotwired/stimulus'
 import { setListenedSubscriptions } from './../utils/utils_subscriptions';
 import { replaceClasses, getClassesOn, getClassesOff } from './../utils/utils_html_classes';
-import { aliasTransitions, aliasTabs, autoInitAction } from './../utils/utils_alias';
-import { debugShowStates, debugAppendActions, debugAppendListens } from './../utils/utils_debugging';
+import { aliasTransitions, aliasTabs, aliasActions } from './../utils/utils_alias';
+import { debugShowObject, debugAppendActions, debugAppendListens } from './../utils/utils_debugging';
 
 export default class extends Controller {
 
@@ -24,8 +24,7 @@ export default class extends Controller {
 
         aliasTransitions(element, this);
         aliasTabs(element, this);
-
-        autoInitAction(element);
+        aliasActions(element);
 
         debugAppendListens(this.debugValue, element);
 
@@ -40,20 +39,27 @@ export default class extends Controller {
         if (!this.first_load_skip_transition) {
             this.syncElementState(element, listened_states);
         }
+
+        debugShowObject(this.debugValue, 'current-subscriptions', this.subscriptions);
     }
 
     connect() {
 
-        document.querySelectorAll('[data-toggler-states]').forEach(element => autoInitAction(element));
+        document.querySelectorAll('[data-toggler-states]').forEach(element => aliasActions(element));
 
         this.autoInitializeTabs();
 
         debugAppendActions(this.debugValue);
-        debugShowStates(this.debugValue, 'current-subscriptions', this.subscriptions);
     }
 
     toggleableTargetDisconnected(element) {
-        // todo: remove element from subscriptions
+        // remove element from subscriptions
+        for (const subscription of Object.keys(this.subscriptions)) {
+            for (const possible_state of Object.keys(this.subscriptions[subscription])) {
+                let elements = this.subscriptions[subscription][possible_state];
+                this.subscriptions[subscription][possible_state] = elements.filter(subscription_element => subscription_element !== element);
+            }
+        }
     }
 
     disconnect() {
@@ -71,7 +77,7 @@ export default class extends Controller {
     // main reaction
     statesValueChanged(newStates, oldStates) {
 
-        debugShowStates(this.debugValue, 'current-states', newStates);
+        debugShowObject(this.debugValue, 'current-states', newStates);
 
         Object.entries(newStates).forEach(([state, value]) => {
 
@@ -118,20 +124,22 @@ export default class extends Controller {
                 return;
             }
 
+            let sanitized_listened_state = listened_state.replace(/[^a-z0-9_]/gi, '_');
+
             // already initialized
-            if (this.statesValue.hasOwnProperty(listened_state)) {
+            if (this.statesValue.hasOwnProperty(sanitized_listened_state)) {
                 return;
             }
 
-            let classesOn = getClassesOn(element, listened_state);
-            let classesOff = getClassesOff(element, listened_state);
+            let classesOn = getClassesOn(element, sanitized_listened_state);
+            let classesOff = getClassesOff(element, sanitized_listened_state);
 
             let all_classes_on_present_in_element = classesOn.every(token => element.classList?.contains(token));
             let all_classes_off_missing_in_element = classesOff.every(token => !element.classList?.contains(token));
 
             let initial_set_state_token = (all_classes_on_present_in_element && all_classes_off_missing_in_element) ? '+' : '-';
 
-            this.setStates([initial_set_state_token + listened_state]);
+            this.setStates([initial_set_state_token + sanitized_listened_state]);
         });
     }
 
@@ -199,14 +207,14 @@ export default class extends Controller {
     getStateNameFromListener(listener) {
 
         if (listener.startsWith('+') || listener.startsWith('-')) {
-            return listener.substring(1);
+            return listener.substring(1).replace(/[^a-z0-9_]/gi, '_');
         }
 
         if (listener.includes(':')) {
-            return listener.split(':', 2)[0];
+            return listener.split(':', 2)[0].replace(/[^a-z0-9_]/gi, '_');
         }
 
-        return listener;
+        return listener.replace(/[^a-z0-9_]/gi, '_');
     }
 
     // states helpers
@@ -224,9 +232,9 @@ export default class extends Controller {
     }
 
     setStatesValue(state, value) {
-        // sanitize to avoid unintended typos in name or values
-        state = state.replace(/[^a-z0-9_]/gi, '');
-        value = value.replace(/[^a-z0-9_]/gi, '');
+        // sanitize to avoid unintended typos in name or values (replace non-valid-chars with _)
+        state = state.replace(/[^a-z0-9_]/gi, '_');
+        value = value.replace(/[^a-z0-9_]/gi, '_');
 
         if (state.length == 0 || value.length == 0) {
             return;
