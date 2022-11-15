@@ -27,6 +27,11 @@ To use tabs in a comfortable way, we have added an *alias* that sets everything 
     - `data-toggler-listen="-tabs_group,+tab_groups_content"`
 :::
 
+
+::: info
+You should set `data-toggler-tab-active` in one data-toggler-tab-link to start with that tab enabled
+:::
+
 ::: tip
 We show a simplified example code for clarity purposes.
 :::

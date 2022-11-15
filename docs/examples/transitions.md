@@ -1,4 +1,4 @@
-# How to use with tabs
+# How to use transitions
 
 Transitions can be applied with `data-transition-xxx` in the toggled element.
 

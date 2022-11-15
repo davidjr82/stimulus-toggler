@@ -12,7 +12,8 @@ export default class extends Controller {
         states: Object,
         debug: Boolean,
     }
-    first_load_skip_transition = true;
+
+    controller_connected = false;
     subscriptions = {};
 
     // lifecycle: initialize, targetConnected, connect, targetDisconnected, disconnect
@@ -35,8 +36,8 @@ export default class extends Controller {
         // initialize states (if not already initialized)
         this.autoInitializeStates(element);
 
-        // change element classes if state is set (for elements connected once the dom is already there)
-        if (!this.first_load_skip_transition) {
+        // change element classes if state is set when controller is already in dom (new added targets)
+        if(this.controller_connected) {
             this.syncElementState(element, listened_states);
         }
 
@@ -44,12 +45,16 @@ export default class extends Controller {
     }
 
     connect() {
-
         document.querySelectorAll('[data-toggler-states]').forEach(element => aliasActions(element));
 
-        this.autoInitializeTabs();
+        // will override autoInitializeStates
+        this.autoInitializeTabsByUrlHash();
 
         debugAppendActions(this.debugValue);
+
+        // setTimeout to avoid transitions in the first load, otherwise
+        // statesValueChanged from toggleableTargetConnected happens after setting controller_connected to true
+        setTimeout(() => this.controller_connected = true, 0);
     }
 
     toggleableTargetDisconnected(element) {
@@ -63,13 +68,11 @@ export default class extends Controller {
     }
 
     disconnect() {
+        this.controller_connected = false;
     }
 
     // main actions
     states(event) {
-        // set first_load_skip_transitions to false in the first interaction (after the initial load of everything)
-        this.first_load_skip_transition = false;
-
         let states = event.currentTarget.dataset?.togglerStates?.toString()?.split(",") || [];
         this.setStates(states);
     }
@@ -78,6 +81,8 @@ export default class extends Controller {
     statesValueChanged(newStates, oldStates) {
 
         debugShowObject(this.debugValue, 'current-states', newStates);
+
+        let skip_transition = !this.controller_connected;
 
         Object.entries(newStates).forEach(([state, value]) => {
 
@@ -90,13 +95,13 @@ export default class extends Controller {
             }
 
             if (['on', 'off'].includes(value)) {
-                replaceClasses(this.subscriptions[state][value], state, value, this.first_load_skip_transition);
+                replaceClasses(this.subscriptions[state][value], state, value, skip_transition);
                 return;
             }
 
             // value as text, all of that group goes to off except that element
             Object.entries(this.subscriptions[state]).forEach(([possible_value, elements]) => {
-                replaceClasses(elements, state, (value == possible_value) ? 'on' : 'off', this.first_load_skip_transition);
+                replaceClasses(elements, state, (value == possible_value) ? 'on' : 'off', skip_transition);
             });
 
         }, this);
@@ -147,25 +152,21 @@ export default class extends Controller {
         listened_states.forEach(listener => {
             let state = this.getStateNameFromListener(listener);
             let value = this.getStateValue(state);
+            let skip_transition = !this.controller_connected;
 
-            replaceClasses([element], state, value, true);
+            if(state != '' && value != '') {
+                replaceClasses([element], state, value, skip_transition);
+            }
         });
     }
 
-    autoInitializeTabs() {
-
+    autoInitializeTabsByUrlHash() {
         // click tab links that matches url hash
         if (window.location.hash) {
             document.querySelectorAll("[href='" + window.location.hash + "']").forEach(tab_selector => {
                 this.setStates(tab_selector.dataset?.togglerStates?.split(',') || []);
             });
         }
-
-        let uninit_tabs = Object.keys(this.subscriptions).filter(k => k.startsWith('tab_') && !this.statesValue.hasOwnProperty(k));
-
-        uninit_tabs.forEach(tab_group => {
-            this.setStatesValue(tab_group, Object.keys(this.subscriptions[tab_group])[0]);
-        });
     }
 
     setStates(states) {
