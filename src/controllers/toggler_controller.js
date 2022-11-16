@@ -118,7 +118,17 @@ export default class extends Controller {
         }
 
         if (element.hasAttribute('data-toggler-tab-active')) {
-            this.setStates(element.dataset?.togglerStates?.split(",").filter(state => state.includes(':')) || []);
+            let tabs_to_enable = element.dataset?.togglerStates?.split(",").filter(state => state.startsWith('tab_') && state.includes(':'));
+
+            tabs_to_enable.forEach(tab_to_enable => {
+
+                let state = this.getStateNameFromListener(tab_to_enable);
+                let value = this.getStateValue(state);
+
+                if(value == '' || !element.hasAttribute('data-toggler-tab-active-forget')) {
+                    this.setStates(element.dataset?.togglerStates?.split(",").filter(state => state.includes(':')) || []);
+                }
+            });
         }
 
         let listen = element.dataset?.togglerListen?.split(',') || [];
