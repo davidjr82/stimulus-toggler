@@ -1,14 +1,14 @@
 import { addClasses, removeClasses } from './utils_html_classes';
 
-export async function enter(element, transitionName = null) {
+const enter = async (element, transitionName = null) => {
     await runTransition('enter', element, transitionName)
 }
 
-export async function leave(element, transitionName = null) {
+const leave = async (element, transitionName = null) => {
     await runTransition('leave', element, transitionName)
 }
 
-async function runTransition(direction, element, transitionName = null) {
+const runTransition = async (direction, element, transitionName = null) => {
     const dataName = transitionName ? `${transitionName}-${direction}` : direction;
 
     const activeClasses = getTransitionClasses(element, `${dataName}`);
@@ -31,11 +31,11 @@ async function runTransition(direction, element, transitionName = null) {
     }
 }
 
-function getTransitionClasses(element, name) {
+const getTransitionClasses = (element, name) => {
     return element.getAttribute(`data-transition-${name}`)?.split(" ") ?? [];
 }
 
-function nextFrame() {
+const nextFrame = () => {
     return new Promise(resolve => {
         requestAnimationFrame(() => {
             requestAnimationFrame(resolve)
@@ -43,7 +43,7 @@ function nextFrame() {
     });
 }
 
-function afterTransition(element) {
+const afterTransition = (element) => {
     return new Promise(resolve => {
         // safari return string with comma separate values
         const computedDuration = getComputedStyle(element).transitionDuration.split(",")[0]
@@ -53,3 +53,5 @@ function afterTransition(element) {
         }, duration)
     });
 }
+
+export { enter, leave };

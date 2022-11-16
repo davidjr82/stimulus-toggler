@@ -156,6 +156,19 @@ export default class extends Controller {
 
             if(state != '' && value != '') {
                 replaceClasses([element], state, value, skip_transition);
+
+
+                if (['on', 'off'].includes(value)) {
+                    replaceClasses([element], state, value, skip_transition);
+                    return;
+                }
+
+                // value as text, all of that group goes to off except that element
+                Object.entries(this.subscriptions[state]).forEach(([possible_value, elements]) => {
+                    if(elements.includes(element)) {
+                        replaceClasses(elements, state, (value == possible_value) ? 'on' : 'off', skip_transition);
+                    }
+                });
             }
         });
     }
@@ -172,7 +185,7 @@ export default class extends Controller {
     setStates(states) {
 
         states.forEach(new_state => {
-            new_state = new_state.replace(/[^a-z0-9_\+\-\:]/gi, '');
+            new_state = new_state.replace(/[^a-z0-9_\+\-\:]/gi, '_');
 
             if (new_state.startsWith('+')) {
                 this.setStateOn(new_state.substring(1));

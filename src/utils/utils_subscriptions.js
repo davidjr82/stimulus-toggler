@@ -2,7 +2,7 @@
 const setListenedSubscriptions = (subscription_variable, element, listened_states) => {
     listened_states.forEach(listened_state => {
 
-        listened_state = listened_state.replace(/[^a-z0-9_\+\-\:]/gi, '');
+        listened_state = listened_state.replace(/[^a-z0-9_\+\-\:]/gi, '_');
 
         if (listened_state.startsWith('+')) {
             setSubscriptionOn(subscription_variable, element, listened_state.substring(1));
