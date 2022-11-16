@@ -56,13 +56,14 @@ function sidebar() {
         // { text: 'Input forms', link: '/examples/input-forms' },
       ]
     },
-    // {
-    //   text: 'Development',
-    //   collapsible: true,
-    //   items: [
-    //     { text: 'Introduction', link: '/development/introduction' },
-    //     { text: 'Tests', link: '/development/tests' },
-    //   ]
-    // }
+    {
+      text: 'Development',
+      collapsible: true,
+      items: [
+        { text: 'Introduction', link: '/development/introduction' },
+        { text: 'Tests', link: '/development/tests' },
+        { text: 'Publishing', link: '/development/publishing' },
+      ]
+    }
   ]
 }
