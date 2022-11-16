@@ -1,0 +1,1 @@
+import{_ as s,c as a,o as t,a as e}from"./app.b80cf0a5.js";const F=JSON.parse('{"title":"What is Stimulus Toggler?","description":"","frontmatter":{},"headers":[],"relativePath":"index.md"}'),o={name:"index.md"},n=e("",16),l=[n];function r(p,c,i,d,g,h){return t(),a("div",null,l)}const u=s(o,[["render",r]]);export{F as __pageData,u as default};
