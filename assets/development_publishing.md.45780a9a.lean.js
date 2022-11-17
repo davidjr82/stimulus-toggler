@@ -1,0 +1,1 @@
+import{_ as s,c as a,o as n,a as e}from"./app.beee932d.js";const C=JSON.parse('{"title":"Pubishing","description":"","frontmatter":{},"headers":[],"relativePath":"development/publishing.md"}'),p={name:"development/publishing.md"},l=e("",14),o=[l];function t(c,i,r,d,h,u){return n(),a("div",null,o)}const y=s(p,[["render",t]]);export{C as __pageData,y as default};
