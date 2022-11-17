@@ -52,7 +52,7 @@ export default class extends Controller {
 
         debugAppendActions(this.debugValue);
 
-        // setTimeout to avoid transitions in the first load, otherwise
+        // setTimeout to put this at the end of the event loop - to avoid transitions in the first load, otherwise
         // statesValueChanged from toggleableTargetConnected happens after setting controller_connected to true
         setTimeout(() => this.controller_connected = true, 0);
     }
@@ -162,11 +162,9 @@ export default class extends Controller {
         listened_states.forEach(listener => {
             let state = this.getStateNameFromListener(listener);
             let value = this.getStateValue(state);
-            let skip_transition = !this.controller_connected;
+            let skip_transition = this.controller_connected;
 
             if(state != '' && value != '') {
-                replaceClasses([element], state, value, skip_transition);
-
 
                 if (['on', 'off'].includes(value)) {
                     replaceClasses([element], state, value, skip_transition);
